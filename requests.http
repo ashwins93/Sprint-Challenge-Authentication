@@ -17,4 +17,4 @@ content-type: application/json
 ###
 
 GET http://localhost:3300/api/jokes HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTM2OTQwMDI1LCJleHAiOjE1MzY5NDM2MjV9.w4bCNca-zUsK-6Eiin2n9wK3lV0CVeozFXJm-uMHyh0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTM2OTQzOTMwLCJleHAiOjE1MzY5NDc1MzB9.jReqhTK0QhHBMSiXml0TsK7Ha58dtTGVn0WB69dO1rg

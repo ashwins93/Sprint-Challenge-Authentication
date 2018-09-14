@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
 import axios from "axios";
 import Form from "./components/Form";
+import Jokes from "./components/Jokes";
 
 const URL = "http://localhost:3300";
 
@@ -52,6 +53,12 @@ class App extends Component {
       });
   };
 
+  logout = () => {
+    localStorage.removeItem("auth-token");
+    this.setStatus("Logged out");
+    this.setState({ loggedIn: false });
+  };
+
   render() {
     return (
       <div className="App">
@@ -83,6 +90,11 @@ class App extends Component {
             exact
             path="/register"
             render={() => <Form title="Sign Up" onSubmit={this.register} />}
+          />
+          <Route
+            exact
+            path="/jokes"
+            render={() => <Jokes invalidateToken={this.logout} />}
           />
         </main>
       </div>
