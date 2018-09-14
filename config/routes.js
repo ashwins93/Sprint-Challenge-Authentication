@@ -80,9 +80,16 @@ function getJokes(req, res) {
       "https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_ten"
     )
     .then(response => {
-      res.status(200).json(response.data);
+      res
+        .status(200)
+        .json({
+          error: false,
+          message: "Fetch successful",
+          results: response.data
+        });
     })
     .catch(err => {
-      res.status(500).json({ message: "Error Fetching Jokes", error: err });
+      console.error(err);
+      res.status(500).json({ message: "Error Fetching Jokes", error: true });
     });
 }
