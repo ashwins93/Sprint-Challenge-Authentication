@@ -44,8 +44,34 @@ function register(req, res, next) {
     .catch(next);
 }
 
-function login(req, res) {
+function login(req, res, next) {
   // implement user login
+
+  const { username, password } = req.body;
+
+  if (!username || !password)
+    return res.json({
+      error: true,
+      message: "Usernaem or password cannot be empty"
+    });
+
+  db("users")
+    .where("username", username)
+    .first()
+    .then(user => {
+      if (!user || !bcrypt.compareSync(password, user.password)) {
+        return res.json({
+          error: true,
+          message: "Username or password is invalid"
+        });
+      }
+
+      const token = jwt.sign({ id: user.id }, jwtKey, {
+        expiresIn: "1h"
+      });
+      res.json({ error: false, message: "Login successful", token });
+    })
+    .catch(next);
 }
 
 function getJokes(req, res) {
